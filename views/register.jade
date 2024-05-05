@@ -1,0 +1,74 @@
+extends layout
+
+block content
+  style.
+    .container {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .error-message {
+      color: red; /* Set color for error message */
+    }
+
+  .container
+    .row.justify-content-center.mt-5
+      .col-md-5
+        .card
+          .card-body
+            h1.card-title.text-center Register
+            form(id="registerForm", action="/register", method="post")
+              .form-group
+                label(for="email") Email:
+                input.form-control(type="email", id="email", name="email")
+                span#errorEmail.error-message // Placeholder for email error message
+              .form-group
+                label(for="password") Password:
+                input.form-control(type="password", id="password", name="password")
+                span#errorPassword.error-message // Placeholder for password error message
+              .form-group
+                label(for="confirmPassword") Confirm Password:
+                input.form-control(type="password", id="confirmPassword", name="confirmPassword")
+                span#errorConfirmPassword.error-message // Placeholder for confirm password error message
+              button.btn.btn-primary.mt-2(type="button", onclick="validateForm()") Register
+          .card-footer.text-center
+            p Already registered? 
+            a(href="/login") Sign in
+
+  script.
+    // JavaScript to validate form inputs and submit the form
+    function validateForm() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+      const errorEmail = document.getElementById('errorEmail');
+      const errorPassword = document.getElementById('errorPassword');
+      const errorConfirmPassword = document.getElementById('errorConfirmPassword');
+
+      // Reset previous error messages
+      errorEmail.textContent = '';
+      errorPassword.textContent = '';
+      errorConfirmPassword.textContent = '';
+
+      // Check if email, password, and confirm password fields are filled
+      if (!email) {
+        errorEmail.textContent = 'Email is required';
+        return;
+      }
+      if (!password) {
+        errorPassword.textContent = 'Password is required';
+        return;
+      }
+      if (!confirmPassword) {
+        errorConfirmPassword.textContent = 'Confirm password is required';
+        return;
+      }
+
+      // Check if password and confirm password match
+      if (password !== confirmPassword) {
+        errorConfirmPassword.textContent = 'Passwords do not match';
+        return;
+      }
+
+      // If all validations pass, submit the form
+      document.getElementById('registerForm').submit();
+    }

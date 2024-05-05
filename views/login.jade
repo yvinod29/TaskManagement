@@ -1,0 +1,56 @@
+extends layout
+
+block content
+  style.
+    .container {
+      font-family: 'Poppins', sans-serif;
+    }
+
+  .container
+    .row.justify-content-center.mt-5
+      .col-md-4
+        .card
+          .card-body
+            h1.card-title.text-center Login
+            form#loginForm(action="/login", method="post")
+              .form-group
+                label(for="email") Email:
+                input.form-control(type="email", id="email", name="email")
+                span#errorEmail.error-message // Placeholder for email error message
+              .form-group
+                label(for="password") Password:
+                input.form-control(type="password", id="password", name="password")
+                span#errorPassword.error-message // Placeholder for password error message
+              button.btn.btn-primary.mt-2(type="button", onclick="validateForm()") Login
+              if  message
+                .alert.alert-danger(role="alert")= message
+               
+          .card-footer.text-center
+            p Don't have an account? 
+            a(href="/register") Register
+
+  script.
+    // JavaScript to validate form inputs and submit the form
+    function validateForm() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const errorEmail = document.getElementById('errorEmail');
+      const errorPassword = document.getElementById('errorPassword');
+
+      // Reset previous error messages
+      errorEmail.textContent = '';
+      errorPassword.textContent = '';
+
+      // Check if email and password fields are filled
+      if (!email) {
+        errorEmail.textContent = 'Email is required';
+        return false; // Prevent form submission
+      }
+      if (!password) {
+        errorPassword.textContent = 'Password is required';
+        return false; // Prevent form submission
+      }
+
+      // If all validations pass, allow form submission
+      document.getElementById('loginForm').submit();
+    }

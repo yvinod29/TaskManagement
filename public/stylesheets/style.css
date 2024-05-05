@@ -1,0 +1,43 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+
+.navbar-brand .navbar-border-task::before,
+.navbar-brand .navbar-border-task::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  height: 2px;
+  background-color: white; /* Opposite color to Task */
+  z-index: 0;
+}
+
+.navbar-brand .navbar-border-hub::before,
+.navbar-brand .navbar-border-hub::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 50%;
+  height: 2px;
+  background-color: #f84464; /* Opposite color to Hub */
+  z-index: 0;
+}
+
+.navbar-border-task::before {
+  transform-origin: left top;
+  transform: skewX(45deg);
+}
+
+.navbar-border-hub::before {
+  transform-origin: right top;
+  transform: skewX(-45deg);
+}

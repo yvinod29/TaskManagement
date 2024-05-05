@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  div.container
+    h1.m-3 Task Management
+
+    // Display tasks in a table
+    if (tasks.length > 0)
+      table.table.table-striped(style="border: 1px solid black;")
+        thead
+          tr
+            th(style="padding: 10px; vertical-align: middle; border: 1px solid black;") Task Name
+            th(style="padding: 10px; vertical-align: middle; border: 1px solid black;") Start Date
+            th(style="padding: 10px; vertical-align: middle; border: 1px solid black;") End Date
+            th(style="padding: 10px; vertical-align: middle; border: 1px solid black;") Number of Days to Complete
+          
+        tbody
+          each task in tasks
+            tr
+              td(style="padding: 10px; vertical-align: middle; border: 1px solid black;")= task.task_name
+              td(style="padding: 10px; vertical-align: middle; border: 1px solid black;")= new Date(task.start_date).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' })
+              td(style="padding: 10px; vertical-align: middle; border: 1px solid black;")= new Date(task.end_date).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' })
+              - var startDate = new Date(task.start_date);
+              - var endDate = new Date(task.end_date);
+              - var currentDate = new Date();
+              - var daysToComplete = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
+             
+              td(style="padding: 10px; vertical-align: middle; border: 1px solid black;")= daysToComplete
+           
+    else
+      p No tasks found
