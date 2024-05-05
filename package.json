@@ -2,6 +2,9 @@
   "name": "taskmanager",
   "version": "0.0.0",
   "private": true,
+  "engines":{
+    "node":"18.x"
+  },
   "scripts": {
     "start": "nodemon node ./bin/www",
     "server": "nodemon server.js"
