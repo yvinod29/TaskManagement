@@ -11,35 +11,15 @@ const client = new Client({
 });
 
 // Connect to the PostgreSQL database
+// Connect to the PostgreSQL database
 client.connect()
   .then(() => {
     console.log("Connected to database");
-    // Define the schema by executing SQL statements
-    const createSchemaQuery = `
-      CREATE SCHEMA IF NOT EXISTS task_management;
-      CREATE TABLE IF NOT EXISTS task_management.users (
-        user_id SERIAL PRIMARY KEY,
-        email VARCHAR(255) UNIQUE NOT NULL,
-        password VARCHAR(255) NOT NULL
-      );
-      CREATE TABLE IF NOT EXISTS task_management.tasks (
-        task_id SERIAL PRIMARY KEY,
-        user_id INT REFERENCES task_management.users(user_id),
-        task_name VARCHAR(255) NOT NULL,
-        start_date DATE NOT NULL,
-        end_date DATE NOT NULL
-      );
-    `;
-    return client.query(createSchemaQuery);
   })
-  .then(() => {
-    console.log("Schema created successfully");
-    // Close the connection
-   })
   .catch(error => {
-    console.error("Error creating schema:", error);
-    // Close the connection in case of error
-    client.end();
+    console.error("Error connecting to database:", error);
   });
 
 module.exports = client;
+
+ 
