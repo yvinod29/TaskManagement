@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon node ./bin/www",
-    "server": "nodemon server.js",
-    "build": "tsc"
+    "server": "nodemon server.js"
   },
   "dependencies": {
     "bootstrap": "^5.3.3",
