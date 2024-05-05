@@ -25,6 +25,9 @@ router.post("/add", async function (req, res, next) {
   router.get('/', async function(req, res, next) {
     try {
 
+           let token=false;
+
+
         if (req.session.token) {
             token = req.session.token;
             console.log("Token:", token); // Log the token
