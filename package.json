@@ -6,7 +6,7 @@
     "node":"18.x"
   },
   "scripts": {
-    "start": "nodemon node ./bin/www",
+    "start": "node ./bin/www",
     "server": "nodemon server.js"
   },
   "dependencies": {
